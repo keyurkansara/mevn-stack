@@ -1,6 +1,6 @@
 {
-  "name": "vue-mevn-stack-app",
-  "version": "0.1.0",
+  "name": "mevn-stack-app",
+  "version": "1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -1,7 +1,7 @@
 
 # MEVN Stack
 
-This is a boilerplate to start with MEVN stack using MongoDB 5,ExpressJS, VueJS 2 and NodeJS.
+This is a boilerplate to start with MEVN stack using MongoDB (Mongoose 6), ExpressJS, VueJS 2 and NodeJS.
 
 ## Installation
 
