@@ -7,7 +7,8 @@
             <tr class="main-head">
               <th class="header" colspan="2">Clients</th>
               <th class="header" colspan="2">
-                <input class="form-control" type="text" placeholder="Search" v-model="filterKeys" @change="filterClients">
+                <input class="form-control" type="text" placeholder="Search Name or Email" v-model="inputSearch"
+                  v-on:keyup="filterClients">
               </th>
               <th>
                 <button type="button" class="btn btn-light create-button" @click="showModal = true">Create</button>
@@ -22,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="client in clients" :key="client.id">
+            <tr v-for="client in filteredClients" :key="client.id">
               <td>{{ client.name }}</td>
               <td>{{ client.email }}</td>
               <td>{{ client.phone }}</td>
@@ -116,7 +117,8 @@ export default {
       showModal: false,
       editID: 0,
       editProviderID: 0,
-      filterKeys: null
+      inputSearch: null,
+      filteredClients: []
     };
   },
   created() {
@@ -127,6 +129,7 @@ export default {
 
     Promise.all(endpoints.map((endpoint) => axios.get(endpoint))).then(axios.spread((...allData) => {
       this.clients = allData[0].data;
+      this.filteredClients = allData[0].data;
       this.providers = allData[1].data;
     }));
   },
@@ -157,7 +160,12 @@ export default {
       return names.toString();
     },
     filterClients() {
-      this.filterKeys;
+      let searchWords = this.inputSearch.toLowerCase().split(/\s+/);
+      this.filteredClients = this.clients.filter(({ name, email }) => {
+        return searchWords.every(str => {
+          return name.toLowerCase().includes(str) || email.toLowerCase().includes(str)
+        });
+      });
     },
     saveClient() {
       this.editClientData.providers = this.selectedProviders;
