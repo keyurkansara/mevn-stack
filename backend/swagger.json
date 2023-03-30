@@ -1,0 +1,276 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "MEVN test",
+    "description": "MEVN test Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/clients": {
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Get all clients in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Clients"
+            }
+          }
+        }
+      }
+    },
+    "/api/client": {
+      "post": {
+        "tags": [
+          "Clients"
+        ],
+        "description": "Create new client in system",
+        "parameters": [
+          {
+            "name": "client",
+            "in": "body",
+            "description": "Client that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Clients"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New client is created",
+            "schema": {
+              "$ref": "#/definitions/Clients"
+            }
+          }
+        }
+      }
+    },
+    "/api/client/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of client that we want to find",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Get client by ID in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Clients"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update client with give ID",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "client",
+            "in": "body",
+            "description": "Client with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Clients"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client is updated",
+            "schema": {
+              "$ref": "#/definitions/Clients"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete client with given ID",
+        "tags": [
+          "Clients"
+        ],
+        "responses": {
+          "200": {
+            "description": "Client is deleted",
+            "schema": {
+              "$ref": "#/definitions/Clients"
+            }
+          }
+        }
+      }
+    },
+    "/api/providers": {
+      "get": {
+        "tags": [
+          "Providers"
+        ],
+        "summary": "Get all providers in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Providers"
+            }
+          }
+        }
+      }
+    },
+    "/api/provider": {
+      "post": {
+        "tags": [
+          "Providers"
+        ],
+        "description": "Create new provider in system",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "body",
+            "description": "Client that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Providers"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New Provider is created",
+            "schema": {
+              "$ref": "#/definitions/Providers"
+            }
+          }
+        }
+      }
+    },
+    "/api/provider/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of provider that we want to find",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Providers"
+        ],
+        "summary": "Get provider by ID in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Providers"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update provider with give ID",
+        "tags": [
+          "Providers"
+        ],
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "body",
+            "description": "Provider with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Providers"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Provider is updated",
+            "schema": {
+              "$ref": "#/definitions/Providers"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete provider with given ID",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Provider is deleted",
+            "schema": {
+              "$ref": "#/definitions/Providers"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Clients": {
+      "required": [
+        "name",
+        "email",
+        "phone"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "integer"
+        }
+      }
+    },
+    "Providers": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
